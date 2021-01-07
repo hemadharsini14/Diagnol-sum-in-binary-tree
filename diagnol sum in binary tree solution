@@ -1,0 +1,42 @@
+class Tree {
+    public static ArrayList <Integer> diagonalSum(Node root) 
+    {
+        ArrayList<Integer>arr = new ArrayList<Integer>();
+        Queue<Node>q = new LinkedList<>();
+        q.add(root);
+        int increment = 1;
+        while(q.size()>0)
+        {
+            int sum = 0;
+            int inc = increment;
+            increment = 0;
+            for(int i=0;i<inc;i++)
+            {
+                Node cur = q.remove();
+                
+                if(cur.left != null)
+                {
+                    q.add(cur.left);
+                    increment++;
+                }
+                sum += cur.data;
+                while(cur.right != null)
+                {
+                    sum+=cur.right.data;
+                    if(cur.right.left != null)
+                    {
+                        q.add(cur.right.left);
+                        increment++;
+                    }
+                    cur = cur.right;
+                }
+                
+            
+            
+            }
+            arr.add(sum);
+            
+        }
+        return arr;
+    }
+}
